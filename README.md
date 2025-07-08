@@ -94,7 +94,7 @@ Verifies the FSM by emulating I²C master operations using tasks and displaying 
 Initial FSM bugs (e.g., missing ACK drive, timing issues, incorrect bit shifting) were identified and corrected by observing the SDA/SCL waveform and verifying that each bit, ACK, and STOP condition aligns with the testbench timing.
 
 **Annotated I2C Waveform**  
-![Expected I2C Waveform](I2C-Device/blob/main/annotated_statemachineI2C_waveform.jpg)
+![Expected I2C Waveform](https://github.com/DanKim15/I2C-Device/blob/main/annotated_statemachineI2C_waveform.jpg)
 
 ## Future Steps
 
