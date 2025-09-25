@@ -36,13 +36,6 @@ Implements the I²C slave protocol as a seven-state FSM:
 | DATA_TX       | 101  | Transmit data byte to master |
 | TX_ACK        | 110  | Receive ACK/NACK from master |
 
-### DebounceFilter
-An input debounce module that stabilizes switch signals:
-- **Counter (`r_count`)** increments on each clock when the input (`i_bouncy`) differs from the stored state (`r_state`), up to `DEBOUNCE_LIMIT`.
-- When the counter reaches the limit, the new stable state is latched into `r_state` and the counter resets.
-- If the input matches the stored state, the counter resets immediately.
-- Output (`o_debounced`) is the debounced signal.
-
 **Key registers & signals:**
 - `r_sda_sync`, `r_scl_sync`: two-stage synchronizers for sampling the asynchronous `io_sda` and `i_scl`.
 - Edge detectors:
