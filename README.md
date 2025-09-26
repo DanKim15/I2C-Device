@@ -12,7 +12,6 @@ This project implements a hardware I²C slave using Verilog. To begin, the [NXP 
 ## Detailed Code Explanation
 
 ### I2CDevice (top-level)
-Combines the debounce filters, the I²C FSM, and LED outputs:
 - **Parameters:**
   - `SLAVE_ADDR` is the 7-bit I²C address (0x50).
 - **StateMachineI2C Instance:**
