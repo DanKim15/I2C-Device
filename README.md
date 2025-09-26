@@ -14,14 +14,9 @@ This project implements a hardware I²C slave using Verilog. To begin, the [NXP 
 ### I2CDevice (top-level)
 Combines the debounce filters, the I²C FSM, and LED outputs:
 - **Parameters:**
-  - `DEBOUNCE_LIMIT` sets the filter duration.
   - `SLAVE_ADDR` is the 7-bit I²C address (0x50).
-- **DebounceFilter Instances:**
-  Four instances for the 4 input switches (`i_sw[3:0]`) into `w_sw[3:0]`.
 - **StateMachineI2C Instance:**
   Handles all I²C protocol details, driving the bidirectional `io_sda` line and sampling `i_scl`.
-- **LED Mapping:**
-  The 8-bit read data (`w_rddata`) from the FSM drives the LEDs (`o_led[7:0]`).
 
 ### StateMachineI2C (FSM core)
 Implements the I²C slave protocol as a seven-state FSM:
@@ -84,12 +79,12 @@ Verifies the FSM by emulating I²C master operations using tasks and displaying 
      - `i2c_read_byte(rd_data)` to capture slave’s response.
      - Master NACK (`i2c_write_bit(1)`) then `i2c_stop()`.
 
-Initial FSM bugs (e.g., missing ACK drive, timing issues, incorrect bit shifting) were identified and corrected by observing the SDA/SCL waveform and verifying that each bit, ACK, and STOP condition aligns with the testbench timing.
+Initial FSM bugs such as missing ACK drive, timing issues, and incorrect bit shifting were identified and corrected by observing the SDA/SCL waveform and verifying that each bit, ACK, and STOP condition matches the correct spec standards.
 
 **Annotated I2C Waveform**  
 ![Expected I2C Waveform](https://github.com/DanKim15/I2C-Device/blob/main/annotated_statemachineI2C_waveform.jpg)
 
 ## Future Steps
 
-- Connect this to an I²C master device, such as a microcontroller, to perform physical data transfers.  
+- Connect this module using a physical FPGA board to an I²C master device, such as a microcontroller, to perform physical data transfers.  
 
